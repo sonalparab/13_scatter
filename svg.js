@@ -14,21 +14,24 @@ var display = function(){
     }
 
     var points = d3.selectAll("circle").data(temp);
-    points.attr("cx", function(d){return d*15;});
+    points.attr("cx", function(d){return d*20;});
     points.data(sales);
-    points.attr("cy", function(d){return d-150;});
+    points.attr("cy", function(d){return 700 - d;});
 }
 
-
+//Draw points
 display();
 
-var axisScale = d3.scale.linear()
-                        .domain([0,500])
-                        .range([0,500]);
+//Add axes
+var svg = d3.select("svg");
 
-var xAxis = d3.svg.axis()
-    .scale(axisScale);
+//Axes scale
+var xscale = d3.scaleLinear().domain([0, 30]).range([0, 600]);
+var yscale = d3.scaleLinear().domain([700, 0]).range([0, 700]);
 
-var xAxisGroup = d3.select("body").append("g").call(xAxis);
+var x_axis = d3.axisBottom().scale(xscale);
+var y_axis = d3.axisLeft().scale(yscale);
 
-//typeof(xAxis);
+//Draw axes and move them
+svg.append("g").attr("transform", "translate(0, 680)").call(x_axis);
+svg.append("g").attr("transform", "translate(30, 0)").call(y_axis);
