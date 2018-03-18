@@ -8,8 +8,8 @@ var display = function(){
     var i;
     for(i = 0; i < temp.length; i++){
 	var point = document.createElementNS("http://www.w3.org/2000/svg","circle");
-	point.setAttribute("r",10);
-	point.setAttribute("fill", "lightsteelblue");
+	point.setAttribute("r",5);
+	point.setAttribute("fill", "orange");
 	pic.appendChild(point);
     }
 
@@ -26,12 +26,13 @@ display();
 var svg = d3.select("svg");
 
 //Axes scale
-var xscale = d3.scaleLinear().domain([0, 30]).range([0, 600]);
-var yscale = d3.scaleLinear().domain([700, 0]).range([0, 700]);
+var xscale = d3.scaleLinear().domain([0, 28]).range([0, 600]);
+var yscale = d3.scaleLinear().domain([0, 660]).range([650, 0]);
 
 var x_axis = d3.axisBottom().scale(xscale);
 var y_axis = d3.axisLeft().scale(yscale);
 
 //Draw axes and move them
-svg.append("g").attr("transform", "translate(0, 680)").call(x_axis);
-svg.append("g").attr("transform", "translate(30, 0)").call(y_axis);
+svg.append("g").attr("transform", "translate(48, 650)").call(x_axis);
+
+svg.append("g").attr("transform", "translate(48, 0)").call(y_axis);
